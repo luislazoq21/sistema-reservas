@@ -1,0 +1,19 @@
+{
+    "name": "luisl/sistema-reservas",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Core\\": "core/",
+            "Helpers\\": "helpers/",
+            "Database\\": "database/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Luis Lazo",
+            "email": "luislazoq21@gmail.com"
+        }
+    ],
+    "require": {}
+}
