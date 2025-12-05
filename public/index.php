@@ -1,5 +1,4 @@
 <?php
-
 require_once __DIR__ . '/../vendor/autoload.php';
 
 use App\Controllers\HomeController;
@@ -17,7 +16,6 @@ try {
     $router->get('/', [HomeController::class, 'index']);
 
     $router->dispatch($request);
-
 } catch (\Throwable $th) {
     echo 'Error: ' . $th->getMessage();
 }

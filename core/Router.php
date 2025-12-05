@@ -49,6 +49,11 @@ class Router
         $this->addRoute('DELETE', $uri, $handler);
     }
 
+    public function getRoutes()
+    {
+        return $this->routes;
+    }
+
     public function dispatch(Request $request)
     {
         $method = $request->getMethod();

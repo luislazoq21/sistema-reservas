@@ -13,7 +13,7 @@ class Request
     public function __construct()
     {
         $uri_cleaned = explode('?', $_SERVER['REQUEST_URI'])[0];
-
+        
         $this->method = $_SERVER['REQUEST_METHOD'];
         $this->uri = rtrim($uri_cleaned, '/') ?: '/';
         $this->headers = getallheaders();

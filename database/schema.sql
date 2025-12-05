@@ -1,0 +1,43 @@
+DROP DATABASE IF EXISTS sistema_reservas;
+
+CREATE DATABASE IF NOT EXISTS sistema_reservas CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE sistema_reservas;
+
+CREATE TABLE users (
+    id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(150) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+    INDEX idx_email (email)
+) ENGINE=InnoDB;
+
+CREATE TABLE services (
+    id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    description VARCHAR(255) NULL,
+    regular_price DECIMAL(9, 2) NOT NULL,
+    sale_price DECIMAL(9, 2) NULL,
+    duration_minutes SMALLINT UNSIGNED NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
+CREATE TABLE reservations (
+    id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    service_id BIGINT UNSIGNED NOT NULL,
+    customer_name VARCHAR(100) NOT NULL,
+    customer_email VARCHAR(100) NOT NULL,
+    start_date DATETIME not null,
+    end_date DATETIME not null,
+    status ENUM('CONFIRMED', 'CANCELLED', 'COMPLETED', 'FAILED', 'PENDING_PAYMENT') DEFAULT 'CONFIRMED',
+    payment_transaction_id BIGINT UNSIGNED NULL,
+    price_paid DECIMAL(9, 2) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+    INDEX idx_reservation_time (start_date, end_date, status),
+    FOREIGN KEY (service_id) REFERENCES services(id) ON DELETE CASCADE
+) ENGINE=InnoDB;
