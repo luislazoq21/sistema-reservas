@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.17",
+    "tailwindcss": "^4.1.17"
+  },
+  "scripts": {
+    "css:watch": "npx @tailwindcss/cli -i ./resources/css/input.css -o ./public/assets/css/output.css --watch",
+    "browser-sync": "browser-sync start --proxy \"http://sistema-reservas.test/\" --files \"./public/assets/css/output.css,./resources/views/**/*.php\"",
+    "dev": "npm-run-all --parallel css:watch browser-sync"
+  },
+  "devDependencies": {
+    "browser-sync": "^3.0.4",
+    "npm-run-all": "^4.1.5"
+  }
+}

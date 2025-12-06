@@ -1,3 +1,8 @@
 .env
 specs.md
 vendor/
+node_modules/
+.DS_Store
+
+/public/assets/css/*.css
+/public/assets/js/*.js
